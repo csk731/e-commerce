@@ -1,10 +1,13 @@
 package com.chaitanyaallu.productcatalog.controllers;
 
+import com.chaitanyaallu.productcatalog.dtos.ExceptionDto;
 import com.chaitanyaallu.productcatalog.dtos.GenericProductDto;
+import com.chaitanyaallu.productcatalog.exceptions.NotFoundException;
 import com.chaitanyaallu.productcatalog.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.RequestEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,19 +27,25 @@ public class ProductController {
         return productService.getAllProducts();
     }
     @GetMapping("/{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id){
+    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException{
         return productService.getProductById(id);
     }
+    @ExceptionHandler(NotFoundException.class)
+    private ResponseEntity<ExceptionDto> handleNotFoundException(NotFoundException notFoundException){
+        return new ResponseEntity<>(new ExceptionDto(HttpStatus.NOT_FOUND, notFoundException.getMessage()),HttpStatus.NOT_FOUND);
+        //return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notFoundException.getMessage());
+    }
     @DeleteMapping("/{id}")
-    public GenericProductDto deleteproductById(@PathVariable("id") Long id){
-        return productService.deleteProductById(id);
+    public ResponseEntity<GenericProductDto> deleteproductById(@PathVariable("id") Long id){
+        //ResponseEntity<GenericProductDto> responseEntity=new ResponseEntity<>(productService.deleteProductById(id), HttpStatus.OK);
+        return null;
     }
     @PostMapping
     public GenericProductDto createProduct(@RequestBody GenericProductDto product){
         return productService.createProduct(product);
     }
     @PutMapping("{id}")
-    public GenericProductDto updateProductById(@PathVariable("id") Long id, GenericProductDto product){
+    public GenericProductDto updateProductById(@PathVariable("id") Long id,@RequestBody GenericProductDto product){
         return productService.updateProductById(id, product);
     }
 }

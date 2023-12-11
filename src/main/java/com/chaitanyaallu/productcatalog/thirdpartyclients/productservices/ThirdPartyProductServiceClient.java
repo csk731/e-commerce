@@ -1,15 +1,11 @@
-package com.chaitanyaallu.productcatalog.services;
+package com.chaitanyaallu.productcatalog.thirdpartyclients.productservices;
 
 import com.chaitanyaallu.productcatalog.dtos.GenericProductDto;
 import com.chaitanyaallu.productcatalog.exceptions.NotFoundException;
-import com.chaitanyaallu.productcatalog.models.Product;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-
-public interface ProductService {
+public interface ThirdPartyProductServiceClient {
     GenericProductDto getProductById(Long id) throws NotFoundException;
     GenericProductDto createProduct(GenericProductDto product);
     List<GenericProductDto> getAllProducts();
