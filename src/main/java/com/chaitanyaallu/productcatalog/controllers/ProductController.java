@@ -19,7 +19,7 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     // This annotation is optional for constructor injection.
-    public ProductController(/*@Value("${productService.type}")*/ @Qualifier("fakeStoreProductService") ProductService productService) {
+    public ProductController(/*@Value("${productService.type}") @Qualifier("fakeStoreProductService")*/ ProductService productService) {
         this.productService = productService;
     }
     @GetMapping
@@ -36,9 +36,10 @@ public class ProductController {
         //return ResponseEntity.status(HttpStatus.NOT_FOUND).body(notFoundException.getMessage());
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<GenericProductDto> deleteproductById(@PathVariable("id") Long id){
+    public GenericProductDto deleteproductById(@PathVariable("id") Long id){
         //ResponseEntity<GenericProductDto> responseEntity=new ResponseEntity<>(productService.deleteProductById(id), HttpStatus.OK);
-        return null;
+        //return responseEntity.getBody();
+        return productService.deleteProductById(id);
     }
     @PostMapping
     public GenericProductDto createProduct(@RequestBody GenericProductDto product){

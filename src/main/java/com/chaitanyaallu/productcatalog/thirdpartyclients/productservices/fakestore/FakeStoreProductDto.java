@@ -1,4 +1,4 @@
-package com.chaitanyaallu.productcatalog.dtos;
+package com.chaitanyaallu.productcatalog.thirdpartyclients.productservices.fakestore;
 
 public class FakeStoreProductDto {
     private Long id;
