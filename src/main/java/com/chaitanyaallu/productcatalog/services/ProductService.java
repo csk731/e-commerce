@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.UUID;
 
 
 public interface ProductService {
-    GenericProductDto getProductById(Long id) throws NotFoundException;
+    GenericProductDto getProductById(UUID id) throws NotFoundException;
     GenericProductDto createProduct(GenericProductDto product);
     List<GenericProductDto> getAllProducts();
-    GenericProductDto deleteProductById(Long id);
-    GenericProductDto updateProductById(Long id, GenericProductDto product);
+    GenericProductDto deleteProductById(UUID id);
+    GenericProductDto updateProductById(UUID id, GenericProductDto product);
 }
