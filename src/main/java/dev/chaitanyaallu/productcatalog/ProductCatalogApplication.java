@@ -1,7 +1,5 @@
 package dev.chaitanyaallu.productcatalog;
 
-import dev.chaitanyaallu.productcatalog.repositories.ProductRepository;
-import dev.chaitanyaallu.productcatalog.services.CategoryService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,13 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProductCatalogApplication implements CommandLineRunner {
 
-	private final ProductRepository productRepository;
-	private final CategoryService categoryService;
-
-	public ProductCatalogApplication(ProductRepository productRepository, CategoryService categoryService) {
-		this.productRepository = productRepository;
-		this.categoryService = categoryService;
-	}
+//	private final ProductRepository productRepository;
+//	private final CategoryService categoryService;
+//
+//	public ProductCatalogApplication(ProductRepository productRepository, CategoryService categoryService) {
+//		this.productRepository = productRepository;
+//		this.categoryService = categoryService;
+//	}
 
 //	private final ProductRepository productRepository;
 //	private final CategoryRepository categoryRepository;

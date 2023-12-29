@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
@@ -23,12 +22,17 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping
-    public List<GenericProductDto> getAllProducts(){
-        return productService.getAllProducts();
+    public ResponseEntity<List<GenericProductDto>> getAllProducts(){
+        List<GenericProductDto> productDtos=productService.getAllProducts();
+        if (productDtos.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(productDtos);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(productDtos);
     }
     @GetMapping("/{id}")
     public GenericProductDto getProductById(@PathVariable("id") String id) throws NotFoundException{
-        return productService.getProductById(id);
+        GenericProductDto genericProductDto=productService.getProductById(id);
+        return genericProductDto;
     }
     @ExceptionHandler(NotFoundException.class)
     private ResponseEntity<ExceptionDto> handleNotFoundException(NotFoundException notFoundException){

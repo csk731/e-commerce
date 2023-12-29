@@ -2,10 +2,10 @@ package dev.chaitanyaallu.productcatalog.services;
 
 import dev.chaitanyaallu.productcatalog.dtos.GenericProductDto;
 import dev.chaitanyaallu.productcatalog.exceptions.NotFoundException;
+import dev.chaitanyaallu.productcatalog.models.Category;
 import dev.chaitanyaallu.productcatalog.models.Price;
 import dev.chaitanyaallu.productcatalog.models.Product;
 import dev.chaitanyaallu.productcatalog.repositories.ProductRepository;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class SelfProductService implements ProductService{
         genericProductDto.setPrice(product.getPrice().getPrice());
         genericProductDto.setDescription(product.getDescription());
         genericProductDto.setImage(product.getImage());
-        genericProductDto.setCategory(product.getCategory());
+        genericProductDto.setCategory(product.getCategory().getCategoryName());
         return genericProductDto;
     }
 
@@ -40,7 +40,7 @@ public class SelfProductService implements ProductService{
         product.setPrice(new Price("",genericProductDto.getPrice()));
         product.setDescription(genericProductDto.getDescription());
         product.setImage(genericProductDto.getImage());
-        product.setCategory(genericProductDto.getCategory());
+        product.setCategory(new Category(genericProductDto.getCategory(),null));
         return product;
     }
 

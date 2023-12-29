@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.chaitanyaallu</groupId>
-	<artifactId>productcatalog</artifactId>
+	<artifactId>e-commerce</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>productcatalog</name>
 	<description>Product catalog for my e-commerce project</description>
